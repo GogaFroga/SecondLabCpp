@@ -1,35 +1,72 @@
 #include<iostream>
 #include"classes.h"
 
-void Complex::set_image(float a_name)
-{
-	Complex::m_image = a_name;
-}
-
-void Complex::set_real(float b_name)
-{
-	Complex::m_real = b_name;
-}
-
-void Complex::get_image()
-{
-	std::cout << Complex::m_image;
-}
-
-void Complex::get_real()
-{
-	std::cout << Complex::m_real;
-}
-
-float Complex::get_abs()
-{
-	return(Complex::m_image * Complex::m_image + Complex::m_real * Complex::m_real);
-}
 
 
-/*
-float ComplexOperations::get_sum()
+void ComplexNumber::set_image(float i_name)
 {
-	return
+	ComplexNumber::m_image = i_name;
 }
-*/
+
+void ComplexNumber::set_real(float r_name)
+{
+	ComplexNumber::m_real = r_name;
+}
+
+void ComplexNumber::get_image()
+{
+	std::cout << ComplexNumber::m_image;
+}
+
+void ComplexNumber::get_real()
+{
+	std::cout << ComplexNumber::m_real;
+}
+
+void ComplexNumber::set_second_image(float i_name)
+{
+	ComplexNumber::m_second_image = i_name;
+}
+
+void ComplexNumber::set_second_real(float r_name)
+{
+	ComplexNumber::m_second_real = r_name;
+}
+
+void ComplexNumber::get_second_image()
+{
+	std::cout << ComplexNumber::m_image;
+}
+
+void ComplexNumber::get_second_real()
+{
+	std::cout << ComplexNumber::m_real;
+}
+
+
+// operations
+float ComplexNumber::get_abs()
+{
+	return(ComplexNumber::m_image * ComplexNumber::m_image + ComplexNumber::m_real * ComplexNumber::m_real);
+}
+
+float ComplexNumber::get_sum()
+{
+	return(ComplexNumber::m_real + ComplexNumber::m_second_real, ComplexNumber::m_image + ComplexNumber::m_second_image);
+}
+
+float ComplexNumber::get_dif()
+{
+	return(ComplexNumber::m_real - ComplexNumber::m_second_real, ComplexNumber::m_image - ComplexNumber::m_second_image);
+}
+
+float ComplexNumber::get_multi()
+{
+	return((ComplexNumber::m_real * ComplexNumber::m_second_real) + -1 * (ComplexNumber::m_image * ComplexNumber::m_second_image), 
+		(ComplexNumber::m_real * ComplexNumber::m_second_image) + (ComplexNumber::m_second_real * ComplexNumber::m_image));
+}
+
+float get_div()
+{
+	std::cout << "";
+}
