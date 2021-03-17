@@ -1,21 +1,18 @@
 #pragma once
-#include<windows> //работа с окном
-#include<clocale>    //установка русского языка	
-#include<string>	// strcompare, 
+#define NOMINMAX
+#include<windows.h>
+#include<locale.h>
+#include<string>		// strcompare
 #include<iostream>
-
-#include"classes.h" //#include<>
-
+#include"classes.h"		// calc lib
+/* 
 #include<cstdlib>
-#include<cstdio>   //
+#include<cstdio>     
 #include<memory>
-#include<stdexcept>
-
-#define LC_ALL      /*implementation defined*/
-
+#include<stdexcept> 
+*/
 
 using namespace std;
-
 
 int main()
 {
@@ -26,7 +23,6 @@ int main()
 	GetConsoleTitle(Title, 1024);					// Узнаем имя окна
 	hwnd = FindWindow(NULL, Title);					// Узнаем hwnd окна
 	ShowWindow(hwnd, SW_SHOWMAXIMIZED);
-	std::setlocale(LC_ALL, "C");
 	SetConsoleCP(1251);
 	SetConsoleOutputCP(1251);
 
@@ -42,7 +38,7 @@ int main()
 	while (strcmp(_string, "quit") != 0)
 	{
 		cout << "Enter your string, author or quit!\n>>";
-		std::cin >> _string;
+		std::cin >> _string;						// Example: (a + bi) + (a + bi) or (a + bi) * (a + bi)
 
 		if (strcmp(_string, "quit") == 0)
 			break;
