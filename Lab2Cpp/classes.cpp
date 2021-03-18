@@ -50,6 +50,17 @@ float ComplexNumber::get_abs()
 	return(ComplexNumber::m_image * ComplexNumber::m_image + ComplexNumber::m_real * ComplexNumber::m_real);
 }
 
+float ComplexNumber::get_conjugate()
+{
+	ComplexNumber::m_image = ComplexNumber::m_image * -1;
+	return(ComplexNumber::m_real, ComplexNumber::m_image);
+}
+
+float ComplexNumber::get_arg()
+{
+	return(ComplexNumber::m_image * ComplexNumber::m_image + ComplexNumber::m_real * ComplexNumber::m_real);
+}
+
 float ComplexNumber::get_sum()
 {
 	return(ComplexNumber::m_real + ComplexNumber::m_second_real, ComplexNumber::m_image + ComplexNumber::m_second_image);
@@ -66,7 +77,13 @@ float ComplexNumber::get_multi()
 		(ComplexNumber::m_real * ComplexNumber::m_second_image) + (ComplexNumber::m_second_real * ComplexNumber::m_image));
 }
 
-float get_div()
+double ComplexNumber::get_div()
 {
-	std::cout << "";
+	ComplexNumber::m_real = ComplexNumber::m_real * ComplexNumber::m_second_real + ComplexNumber::m_image * ComplexNumber::m_second_image 
+		/ pow(ComplexNumber::m_second_real, 2) + pow(ComplexNumber::m_second_image, 2);
+
+	ComplexNumber::m_image = ComplexNumber::m_image * ComplexNumber::m_second_real + ComplexNumber::m_second_image * ComplexNumber::m_real 
+		/ pow(ComplexNumber::m_second_real, 2) + pow(ComplexNumber::m_second_image, 2);
+
+	return(ComplexNumber::m_real, ComplexNumber::m_image);
 }

@@ -27,7 +27,7 @@ int main()
 	SetConsoleOutputCP(1251);
 
 	char _string[100];
-	Complex number;
+	ComplexNumber number;
 	number.set_image(10.0);
 	number.set_real(10.0);
 	number.get_image();
@@ -55,3 +55,4 @@ int main()
 		}
 	}
 }
+

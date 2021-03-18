@@ -21,13 +21,19 @@ class ComplexNumber
 
 		float get_abs();				// abs of complex number
 
+		float get_arg();				// arg of complex number
+
+		float get_conjugate();			// conjugate of complex number
+
+		//  квадратный корень
+
 		float get_sum();				// sum of two complex numbers
 
 		float get_dif();				// diffetence between two complex numbers
 
 		float get_multi();				// multiply one complex number on another
 
-		float get_div();				// divide one complex number on another
+		double get_div();				// divide one complex number on another
 
 	private:
 		float m_image;
