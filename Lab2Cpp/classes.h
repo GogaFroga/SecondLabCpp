@@ -1,4 +1,5 @@
 #pragma once
+#include<string>
 
 class ComplexNumber
 {
@@ -7,17 +8,9 @@ class ComplexNumber
 
 		void set_real(float);			// set real
 
-		void get_image();				// get image
+		float get_image();				// get image
 
-		void get_real();				// get real
-
-		void set_second_real(float);	// set 2nd image
-
-		void set_second_image(float);	// set 2nd real
-
-		void get_second_image();		// get 2nd image
-
-		void get_second_real();			// get 2nd real
+		float get_real();				// get real
 
 		float get_abs();				// abs of complex number
 
@@ -27,17 +20,15 @@ class ComplexNumber
 
 		//  квадратный корень
 
-		float get_sum();				// sum of two complex numbers
+		float get_sum(class ComplexNumber);				// sum of two complex numbers
 
-		float get_dif();				// diffetence between two complex numbers
+		float get_dif(class ComplexNumber);				// diffetence between two complex numbers
 
-		float get_multi();				// multiply one complex number on another
+		float get_multi(class ComplexNumber);				// multiply one complex number on another
 
-		double get_div();				// divide one complex number on another
+		double get_div(class ComplexNumber);				// divide one complex number on another
 
 	private:
 		float m_image;
 		float m_real;
-		float m_second_image = 0;
-		float m_second_real = 0;
 };

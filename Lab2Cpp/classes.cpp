@@ -2,7 +2,6 @@
 #include"classes.h"
 
 
-
 void ComplexNumber::set_image(float i_name)
 {
 	ComplexNumber::m_image = i_name;
@@ -13,38 +12,19 @@ void ComplexNumber::set_real(float r_name)
 	ComplexNumber::m_real = r_name;
 }
 
-void ComplexNumber::get_image()
+float ComplexNumber::get_image()
 {
 	std::cout << ComplexNumber::m_image;
+	return(m_image);
 }
 
-void ComplexNumber::get_real()
+float ComplexNumber::get_real()
 {
 	std::cout << ComplexNumber::m_real;
+	return(m_real);
 }
 
-void ComplexNumber::set_second_image(float i_name)
-{
-	ComplexNumber::m_second_image = i_name;
-}
-
-void ComplexNumber::set_second_real(float r_name)
-{
-	ComplexNumber::m_second_real = r_name;
-}
-
-void ComplexNumber::get_second_image()
-{
-	std::cout << ComplexNumber::m_image;
-}
-
-void ComplexNumber::get_second_real()
-{
-	std::cout << ComplexNumber::m_real;
-}
-
-
-// operations
+// solo operations
 float ComplexNumber::get_abs()
 {
 	return(ComplexNumber::m_image * ComplexNumber::m_image + ComplexNumber::m_real * ComplexNumber::m_real);
@@ -58,32 +38,34 @@ float ComplexNumber::get_conjugate()
 
 float ComplexNumber::get_arg()
 {
-	return(ComplexNumber::m_image * ComplexNumber::m_image + ComplexNumber::m_real * ComplexNumber::m_real);
+	return(pow(ComplexNumber::m_image * ComplexNumber::m_image + ComplexNumber::m_real * ComplexNumber::m_real, 0.5));
 }
 
-float ComplexNumber::get_sum()
+// two numbers operations
+float ComplexNumber::get_sum(class ComplexNumber numberTwo)
 {
-	return(ComplexNumber::m_real + ComplexNumber::m_second_real, ComplexNumber::m_image + ComplexNumber::m_second_image);
+
+	return(ComplexNumber::m_real + numberTwo.m_real, ComplexNumber::m_image + numberTwo.m_image);
 }
 
-float ComplexNumber::get_dif()
+float ComplexNumber::get_dif(class ComplexNumber numberTwo)
 {
-	return(ComplexNumber::m_real - ComplexNumber::m_second_real, ComplexNumber::m_image - ComplexNumber::m_second_image);
+	return(ComplexNumber::m_real - numberTwo.m_real, ComplexNumber::m_image - numberTwo.m_image);
 }
 
-float ComplexNumber::get_multi()
+float ComplexNumber::get_multi(class ComplexNumber numberTwo)
 {
-	return((ComplexNumber::m_real * ComplexNumber::m_second_real) + -1 * (ComplexNumber::m_image * ComplexNumber::m_second_image), 
-		(ComplexNumber::m_real * ComplexNumber::m_second_image) + (ComplexNumber::m_second_real * ComplexNumber::m_image));
+	return((ComplexNumber::m_real * numberTwo.m_real) + -1 * (ComplexNumber::m_image * numberTwo.m_image),
+		(ComplexNumber::m_real * numberTwo.m_image) + (numberTwo.m_real * ComplexNumber::m_image));
 }
 
-double ComplexNumber::get_div()
+double ComplexNumber::get_div(class ComplexNumber numberTwo)
 {
-	ComplexNumber::m_real = ComplexNumber::m_real * ComplexNumber::m_second_real + ComplexNumber::m_image * ComplexNumber::m_second_image 
-		/ pow(ComplexNumber::m_second_real, 2) + pow(ComplexNumber::m_second_image, 2);
+	ComplexNumber::m_real = ComplexNumber::m_real * numberTwo.m_real + ComplexNumber::m_image * numberTwo.m_image
+		/ pow(numberTwo.m_real, 2) + pow(numberTwo.m_image, 2);
 
-	ComplexNumber::m_image = ComplexNumber::m_image * ComplexNumber::m_second_real + ComplexNumber::m_second_image * ComplexNumber::m_real 
-		/ pow(ComplexNumber::m_second_real, 2) + pow(ComplexNumber::m_second_image, 2);
+	ComplexNumber::m_image = ComplexNumber::m_image * numberTwo.m_real + numberTwo.m_image * ComplexNumber::m_real
+		/ pow(numberTwo.m_real, 2) + pow(numberTwo.m_image, 2);
 
 	return(ComplexNumber::m_real, ComplexNumber::m_image);
 }
