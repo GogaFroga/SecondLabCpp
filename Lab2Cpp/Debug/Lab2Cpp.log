@@ -1,5 +1,7 @@
 ﻿  main.cpp
-C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(117,16): warning C4018: <: несоответствие типов со знаком и без знака
-C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(117,44): warning C4804: <: небезопасное использование типа "bool" в операции
-C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(119,16): warning C4018: >: несоответствие типов со знаком и без знака
+C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(120,16): warning C4018: <: несоответствие типов со знаком и без знака
+C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(120,44): warning C4804: <: небезопасное использование типа "bool" в операции
+C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(122,16): warning C4018: >: несоответствие типов со знаком и без знака
+C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(150,27): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(161,28): warning C4244: =: преобразование "double" в "float", возможна потеря данных
   Lab2Cpp.vcxproj -> C:\Users\User\Documents\GitHub\SecondLabCpp\Debug\Lab2Cpp.exe

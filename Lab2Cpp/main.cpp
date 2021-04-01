@@ -12,6 +12,7 @@ void parse(std::string _string);
 unsigned int check(std::string _string, int _array[7]);
 void solo_operation(class ComplexNumber number1, std::string _string);
 void dual_operation(class ComplexNumber number1, class ComplexNumber number2, std::string _string);
+float set_numbers(class ComplexNumber number, std::string _string);
 
 
 int main()
@@ -32,8 +33,8 @@ int main()
 	while (strcmp(_string, "quit") != 0)
 	{
 		cout << "Enter your string, author or quit!\n>>";
-		std::cin >> _string;						// Example: (a + bi) + (a + bi) or (a + bi) * (a + bi)
-		std::string prove = "<abs>(4+i*--4)";
+		std::cin >> _string;					// Example: (a + bi) + (a + bi) or (a + bi) * (a + bi)
+		std::string prove = "<abs>(-4+i*-4)";	// <arg>(-4+i*-4)
 
 		if (strcmp(_string, "quit") == 0)
 			break;
@@ -65,7 +66,9 @@ void parse(std::string _string)
 		flag = check(local_string, F_array); // запуск проверки правильности
 		if (flag == 0)
 		{
-			// запуск set
+			set_numbers(number1, local_string);
+			//delete
+			set_numbers(number2, local_string);
 			dual_operation(number1, number2, local_string); // запуск действия
 		}
 		else
@@ -78,7 +81,8 @@ void parse(std::string _string)
 		flag = check(local_string, S_array); // запуск проверки правильности
 		if (flag == 0)
 		{
-			// заупуск set
+			set_numbers(number1, local_string);
+			
 			solo_operation(number1, local_string); // запуск действия
 		}
 		else
@@ -128,10 +132,39 @@ unsigned int check(std::string _string, int _array[7])
 	return(error);
 }
 
-void set_numbers()
+void set_numbers(class ComplexNumber number1, std::string _string)
 {
-
- }
+	int num_flag = 1;			// знак числа
+	int found_flag = 0;			// нашли ли первое число
+	int j = 0;					// счетчик для степени
+	int i = _string.find("(");	// начало
+	float real_number = 0;
+	float image_number = 0;
+	while (_string[i] != ')')
+	{
+		if (_string[i] == '-')
+		{
+			num_flag = -1;
+		}
+		else if (isdigit(_string[i]) && (found_flag != 1))
+		{
+			real_number = num_flag * (real_number + (int)_string[i]-48 * pow(10, j));
+			j++;
+		}
+		else if (_string[i] == 'i')
+		{
+			found_flag = 1;
+			num_flag = 1;
+			j = 0;
+		}
+		else if (isdigit(_string[i]) && (found_flag == 1))
+		{
+			image_number = num_flag * (image_number + (int)_string[i]-48 * pow(10, j));
+			j++;
+		}
+		i++;
+	}
+}
 
 void solo_operation(class ComplexNumber number1, std::string _string)
 {
