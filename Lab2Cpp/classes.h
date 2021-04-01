@@ -29,6 +29,6 @@ class ComplexNumber
 		double get_div(class ComplexNumber);				// divide one complex number on another
 
 	private:
-		float m_image;
-		float m_real;
+		float m_image = 0;
+		float m_real = 0;
 };
