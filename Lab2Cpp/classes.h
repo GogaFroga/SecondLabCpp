@@ -18,7 +18,7 @@ class ComplexNumber
 
 		float get_conjugate();			// conjugate of complex number
 
-		//  квадратный корень
+		float get_root();				// root of complex number
 
 		float get_sum(class ComplexNumber);				// sum of two complex numbers
 
@@ -26,7 +26,7 @@ class ComplexNumber
 
 		float get_multi(class ComplexNumber);				// multiply one complex number on another
 
-		double get_div(class ComplexNumber);				// divide one complex number on another
+		float get_div(class ComplexNumber);				// divide one complex number on another
 
 	private:
 		float m_image = 0;

@@ -12,7 +12,7 @@ void parse(std::string _string);
 unsigned int check(std::string _string, int _array[7]);
 void solo_operation(class ComplexNumber number1, std::string _string);
 void dual_operation(class ComplexNumber number1, class ComplexNumber number2, std::string _string);
-float set_numbers(class ComplexNumber number, std::string _string);
+ComplexNumber set_numbers(class ComplexNumber number, std::string _string);
 
 
 int main()
@@ -33,8 +33,8 @@ int main()
 	while (strcmp(_string, "quit") != 0)
 	{
 		cout << "Enter your string, author or quit!\n>>";
-		std::cin >> _string;					// Example: (a + bi) + (a + bi) or (a + bi) * (a + bi)
-		std::string prove = "<abs>(-4+i*-4)";	// <arg>(-4+i*-4)
+		std::cin >> _string;
+		//std::string prove = "(3.5+i*-3)<+>(-4+i*-4.7)";	// <arg>(-4+i*-4)
 
 		if (strcmp(_string, "quit") == 0)
 			break;
@@ -46,8 +46,8 @@ int main()
 		else
 		{
 			system("cls");
-			parse(prove);
-			cout << "[printed]\n\n";
+			parse(_string);
+			cout << " [printed]\n\n";
 		}
 	}
 }
@@ -66,9 +66,9 @@ void parse(std::string _string)
 		flag = check(local_string, F_array); // запуск проверки правильности
 		if (flag == 0)
 		{
-			set_numbers(number1, local_string);
-			//delete
-			set_numbers(number2, local_string);
+			number1 = set_numbers(number1, local_string);
+			local_string = local_string.substr( local_string.find('<') );
+			number2 = set_numbers(number2, local_string);
 			dual_operation(number1, number2, local_string); // запуск действия
 		}
 		else
@@ -81,8 +81,7 @@ void parse(std::string _string)
 		flag = check(local_string, S_array); // запуск проверки правильности
 		if (flag == 0)
 		{
-			set_numbers(number1, local_string);
-			
+			number1 = set_numbers(number1, local_string);
 			solo_operation(number1, local_string); // запуск действия
 		}
 		else
@@ -132,11 +131,12 @@ unsigned int check(std::string _string, int _array[7])
 	return(error);
 }
 
-void set_numbers(class ComplexNumber number1, std::string _string)
+ComplexNumber set_numbers(class ComplexNumber number1, std::string _string)
 {
 	int num_flag = 1;			// знак числа
+	int dot_flag = 0;			// нахождение точки
 	int found_flag = 0;			// нашли ли первое число
-	int j = 0;					// счетчик для степени
+	float j = 0;					// счетчик для степени
 	int i = _string.find("(");	// начало
 	float real_number = 0;
 	float image_number = 0;
@@ -146,24 +146,46 @@ void set_numbers(class ComplexNumber number1, std::string _string)
 		{
 			num_flag = -1;
 		}
-		else if (isdigit(_string[i]) && (found_flag != 1))
+		else if (isdigit(_string[i]) && (dot_flag != 1) && (found_flag != 1)) // число, не было точки, не было i
 		{
-			real_number = num_flag * (real_number + (int)_string[i]-48 * pow(10, j));
+			real_number = real_number + ((int)_string[i] - 48) * pow(10, j);
 			j++;
+		}
+		else if (_string[i] == '.')
+		{
+			dot_flag = 1;
+			j = -1;
+		}
+		else if ((dot_flag == 1) && isdigit(_string[i]) && (found_flag != 1)) // БЫЛА точка, число, не было i
+		{
+			real_number = real_number + ((int)_string[i] - 48) * pow(10, j);
+			j--;
 		}
 		else if (_string[i] == 'i')
 		{
+			real_number = num_flag * real_number;
 			found_flag = 1;
+			dot_flag = 0;
 			num_flag = 1;
 			j = 0;
 		}
 		else if (isdigit(_string[i]) && (found_flag == 1))
 		{
-			image_number = num_flag * (image_number + (int)_string[i]-48 * pow(10, j));
+			image_number = image_number + ((int)_string[i] - 48) * pow(10, j);
 			j++;
+		}
+		else if ((dot_flag == 1) && isdigit(_string[i]) && (found_flag == 1)) // БЫЛА точка, число, не было i
+		{
+			real_number = real_number + ((int)_string[i] - 48) * pow(10, j);
+			j--;
 		}
 		i++;
 	}
+	image_number = num_flag * image_number;
+	number1.set_real(real_number);
+	number1.set_image(image_number);
+
+	return number1;
 }
 
 void solo_operation(class ComplexNumber number1, std::string _string)
@@ -177,6 +199,11 @@ void solo_operation(class ComplexNumber number1, std::string _string)
 		cout << "Result: abs = " << number1.get_abs();
 	else if (_string.find("arg") != string::npos)
 		cout << "Result: arg = " << number1.get_arg();
+	else if (_string.find("root") != string::npos)
+	{
+		number1.get_root();
+		cout << "Result: root = " << number1.get_real() << " + " << number1.get_image() << "i";
+	}
 	else if (_string.find("re") != string::npos)
 		cout << "Result: re = " << number1.get_real();
 	else if (_string.find("im") != string::npos)
@@ -188,13 +215,25 @@ void solo_operation(class ComplexNumber number1, std::string _string)
 void dual_operation(class ComplexNumber number1, class ComplexNumber number2, std::string _string)
 {
 	if (_string.find("<+>") != string::npos)
-		cout << "Result: " << number1.get_sum(number2);
+	{
+		number1.get_sum(number2);
+		cout << "Result: " << number1.get_real() << " + " << number1.get_image() << "i";
+	}
 	else if (_string.find("<->") != string::npos)
-		cout << "Result: " << number1.get_dif(number2);
+	{
+		number1.get_dif(number2);
+		cout << "Result: " << number1.get_real() << " + " << number1.get_image() << "i";
+	}
 	else if (_string.find("<*>") != string::npos)
-		cout << "Result: " << number1.get_multi(number2);
+	{
+		number1.get_multi(number2);
+		cout << "Result: " << number1.get_real() << " + " << number1.get_image() << "i";
+	}
 	else if (_string.find("</>") != string::npos)
-		cout << "Result: " << number1.get_div(number2);
+	{
+		number1.get_div(number2);
+		cout << "Result: " << number1.get_real() << " + " << number1.get_image() << "i";
+	}
 	else
 		cout << "[ Ошибка при вводе операции ]";
 }
