@@ -128,6 +128,48 @@ unsigned int check(std::string _string, int _array[7])
 		}
 		i++;
 	}
+	//проверяем количество// < > ( ) * - + .
+	if (counter[0] != _array[0])
+	{
+		error = -1;
+		cout << "[ Ошибка в символе < ]";
+	}
+	if (counter[1] != _array[1])
+	{
+		error = -1;
+		cout << "[ Ошибка в символе > ]";
+	}
+	if (counter[2] != _array[2])
+	{
+		error = -1;
+		cout << "[ Ошибка в символе ( ]";
+	}
+	if (counter[3] != _array[3])
+	{
+		error = -1;
+		cout << "[ Ошибка в символе ) ]";
+	}
+	if (counter[4] != _array[4])
+	{
+		error = -1;
+		cout << "[ Ошибка в символе * ]";
+	}
+	if (counter[5] != _array[5])
+	{
+		error = -1;
+		cout << "[ Ошибка в символе - ]";
+	}
+	if (counter[6] != _array[6])
+	{
+		error = -1;
+		cout << "[ Ошибка в символе + ]";
+	}
+	if (counter[7] != _array[7])
+	{
+		error = -1;
+		cout << "[ Ошибка в символе . ]";
+	}
+
 	return(error);
 }
 
@@ -140,7 +182,8 @@ ComplexNumber set_numbers(class ComplexNumber number1, std::string _string)
 	int i = _string.find("(");	// начало
 	float real_number = 0;
 	float image_number = 0;
-	while (_string[i] != ')')
+	cout << "hello" <<_string.length();
+	while ( (_string[i] != ')') || (_string.length() <= i) )
 	{
 		if (_string[i] == '-')
 		{
