@@ -41,11 +41,11 @@ int main()
 		else if (strcmp(_string, "author") == 0)
 		{
 			system("cls");
-			cout << "[printed] Author: \n\n";
+			cout << "[printed] Author: Vakulenko Arturs\n\n";
 		}
 		else
 		{
-			system("cls");
+			//system("cls");
 			parse(_string);
 			cout << " [printed]\n\n";
 		}
@@ -129,46 +129,46 @@ unsigned int check(std::string _string, int _array[7])
 		i++;
 	}
 	//проверяем количество// < > ( ) * - + .
-	if (counter[0] != _array[0])
-	{
-		error = -1;
-		cout << "[ Ошибка в символе < ]";
-	}
-	if (counter[1] != _array[1])
-	{
-		error = -1;
-		cout << "[ Ошибка в символе > ]";
-	}
-	if (counter[2] != _array[2])
-	{
-		error = -1;
-		cout << "[ Ошибка в символе ( ]";
-	}
-	if (counter[3] != _array[3])
-	{
-		error = -1;
-		cout << "[ Ошибка в символе ) ]";
-	}
-	if (counter[4] != _array[4])
-	{
-		error = -1;
-		cout << "[ Ошибка в символе * ]";
-	}
-	if (counter[5] != _array[5])
-	{
-		error = -1;
-		cout << "[ Ошибка в символе - ]";
-	}
-	if (counter[6] != _array[6])
-	{
-		error = -1;
-		cout << "[ Ошибка в символе + ]";
-	}
-	if (counter[7] != _array[7])
-	{
-		error = -1;
-		cout << "[ Ошибка в символе . ]";
-	}
+	//if (counter[0] != _array[0])
+	//{
+	//	error = -1;
+	//	cout << "[ Ошибка в символе < ]";
+	//}
+	//if (counter[1] != _array[1])
+	//{
+	//	error = -1;
+	//	cout << "[ Ошибка в символе > ]";
+	//}
+	//if (counter[2] != _array[2])
+	//{
+	//	error = -1;
+	//	cout << "[ Ошибка в символе ( ]";
+	//}
+	//if (counter[3] != _array[3])
+	//{
+	//	error = -1;
+	//	cout << "[ Ошибка в символе ) ]";
+	//}
+	//if (counter[4] != _array[4])
+	//{
+	//	error = -1;
+	//	cout << "[ Ошибка в символе * ]";
+	//}
+	//if (counter[5] != _array[5])
+	//{
+	//	error = -1;
+	//	cout << "[ Ошибка в символе - ]";
+	//}
+	//if (counter[6] != _array[6])
+	//{
+	//	error = -1;
+	//	cout << "[ Ошибка в символе + ]";
+	//}
+	//if (counter[7] != _array[7])
+	//{
+	//	error = -1;
+	//	cout << "[ Ошибка в символе . ]";
+	//}
 
 	return(error);
 }
@@ -182,7 +182,7 @@ ComplexNumber set_numbers(class ComplexNumber number1, std::string _string)
 	int i = _string.find("(");	// начало
 	float real_number = 0;
 	float image_number = 0;
-	cout << "hello" <<_string.length();
+
 	while ( (_string[i] != ')') || (_string.length() <= i) )
 	{
 		if (_string[i] == '-')
@@ -257,25 +257,26 @@ void solo_operation(class ComplexNumber number1, std::string _string)
 
 void dual_operation(class ComplexNumber number1, class ComplexNumber number2, std::string _string)
 {
+	ComplexNumber result;
 	if (_string.find("<+>") != string::npos)
 	{
-		number1.get_sum(number2);
-		cout << "Result: " << number1.get_real() << " + " << number1.get_image() << "i";
+		result = number1.get_sum(number2);
+		cout << "Result: " << result.get_real() << " + " << result.get_image() << "i";
 	}
 	else if (_string.find("<->") != string::npos)
 	{
-		number1.get_dif(number2);
-		cout << "Result: " << number1.get_real() << " + " << number1.get_image() << "i";
+		result = number1.get_dif(number2);
+		cout << "Result: " << result.get_real() << " + " << result.get_image() << "i";
 	}
 	else if (_string.find("<*>") != string::npos)
 	{
-		number1.get_multi(number2);
-		cout << "Result: " << number1.get_real() << " + " << number1.get_image() << "i";
+		result = number1.get_multi(number2);
+		cout << "Result: " << result.get_real() << " + " << result.get_image() << "i";
 	}
 	else if (_string.find("</>") != string::npos)
 	{
-		number1.get_div(number2);
-		cout << "Result: " << number1.get_real() << " + " << number1.get_image() << "i";
+		result = number1.get_div(number2);
+		cout << "Result: " << result.get_real() << " + " << result.get_image() << "i";
 	}
 	else
 		cout << "[ Ошибка при вводе операции ]";

@@ -25,7 +25,7 @@ float ComplexNumber::get_real()
 // solo operations
 float ComplexNumber::get_abs()
 {
-	return(pow(ComplexNumber::m_image * ComplexNumber::m_image + ComplexNumber::m_real * ComplexNumber::m_real, 0.5));
+	return(atan(ComplexNumber::m_image / ComplexNumber::m_real));
 }
 
 float ComplexNumber::get_conjugate()
@@ -47,32 +47,41 @@ float ComplexNumber::get_arg()
 }
 
 // two numbers operations
-float ComplexNumber::get_sum(class ComplexNumber numberTwo)
+ComplexNumber ComplexNumber::get_sum(class ComplexNumber numberTwo)
 {
-	ComplexNumber::m_real = ComplexNumber::m_real + numberTwo.m_real;
-	ComplexNumber::m_image = ComplexNumber::m_image + numberTwo.m_image;
-	return(0);
+	ComplexNumber z;
+
+	z.m_real = ComplexNumber::m_real + numberTwo.m_real;
+	z.m_image = ComplexNumber::m_image + numberTwo.m_image;
+	return z;
 }
 
-float ComplexNumber::get_dif(class ComplexNumber numberTwo)
+ComplexNumber ComplexNumber::get_dif(class ComplexNumber numberTwo)
 {
-	ComplexNumber::m_real = ComplexNumber::m_real - numberTwo.m_real;
-	ComplexNumber::m_image = ComplexNumber::m_image - numberTwo.m_image;
-	return(0);
+	ComplexNumber z;
+
+	z.m_real = ComplexNumber::m_real - numberTwo.m_real;
+	z.m_image = ComplexNumber::m_image - numberTwo.m_image;
+	return z;
 }
 
-float ComplexNumber::get_multi(class ComplexNumber numberTwo)
+ComplexNumber ComplexNumber::get_multi(class ComplexNumber numberTwo)
 {
-	ComplexNumber::m_real = (ComplexNumber::m_real * numberTwo.m_real) + -1 * (ComplexNumber::m_image * numberTwo.m_image);
-	ComplexNumber::m_real = (ComplexNumber::m_real * numberTwo.m_image) + (numberTwo.m_real * ComplexNumber::m_image);
-	return(0);
+	ComplexNumber z;
+
+	z.m_real = (ComplexNumber::m_real * numberTwo.m_real) + -1 * (ComplexNumber::m_image * numberTwo.m_image);
+	z.m_image = (ComplexNumber::m_real * numberTwo.m_image) + (numberTwo.m_real * ComplexNumber::m_image);
+
+	return z;
 }
 
-float ComplexNumber::get_div(class ComplexNumber numberTwo)
+ComplexNumber ComplexNumber::get_div(class ComplexNumber numberTwo)
 {
-	ComplexNumber::m_real = ComplexNumber::m_real * numberTwo.m_real + ComplexNumber::m_image * numberTwo.m_image
-		/ pow(numberTwo.m_real, 2) + pow(numberTwo.m_image, 2);
-	ComplexNumber::m_image = ComplexNumber::m_image * numberTwo.m_real + numberTwo.m_image * ComplexNumber::m_real
-		/ pow(numberTwo.m_real, 2) + pow(numberTwo.m_image, 2);
-	return(0);
+	ComplexNumber z;
+
+	z.m_real = ( ComplexNumber::m_real * numberTwo.m_real + ComplexNumber::m_image * numberTwo.m_image )
+									/ ( numberTwo.m_real* numberTwo.m_real + numberTwo.m_image* numberTwo.m_image);
+	z.m_image = ( ComplexNumber::m_image * numberTwo.m_real - numberTwo.m_image * ComplexNumber::m_real )
+									/ (numberTwo.m_real * numberTwo.m_real + numberTwo.m_image * numberTwo.m_image) ;
+	return z;
 }
