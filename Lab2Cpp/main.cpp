@@ -41,7 +41,7 @@ int main()
 		else if (strcmp(_string, "author") == 0)
 		{
 			system("cls");
-			cout << "[printed] Author: Vakulenko Arturs\n\n";
+			cout << "[printed] Author: GogaFroga\n\n";
 		}
 		else
 		{
@@ -51,7 +51,6 @@ int main()
 		}
 	}
 }
-
 
 void parse(std::string _string)
 {	

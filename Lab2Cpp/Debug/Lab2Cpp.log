@@ -1,4 +1,8 @@
-﻿  main.cpp
+﻿  classes.cpp
+C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\classes.cpp(39,29): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\classes.cpp(40,102): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\classes.cpp(46,12): warning C4244: return: преобразование "double" в "float", возможна потеря данных
+  main.cpp
 C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(120,16): warning C4018: <: несоответствие типов со знаком и без знака
 C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(120,44): warning C4804: <: небезопасное использование типа "bool" в операции
 C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(122,16): warning C4018: >: несоответствие типов со знаком и без знака
@@ -7,4 +11,5 @@ C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(194,30): warning C4
 C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(204,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
 C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(217,32): warning C4244: =: преобразование "double" в "float", возможна потеря данных
 C:\Users\User\Documents\GitHub\SecondLabCpp\Lab2Cpp\main.cpp(222,30): warning C4244: =: преобразование "double" в "float", возможна потеря данных
+  Создание кода...
   Lab2Cpp.vcxproj -> C:\Users\User\Documents\GitHub\SecondLabCpp\Debug\Lab2Cpp.exe
